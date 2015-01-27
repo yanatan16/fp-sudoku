@@ -1,0 +1,1 @@
+console.log('sudoku as an FP exercise!')

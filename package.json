@@ -1,0 +1,18 @@
+{
+  "name": "fp-sudoku",
+  "version": "0.0.0",
+  "description": "sudoku as a functional programming exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jon Eisen <jon@joneisen.me>",
+  "license": "MIT",
+  "dependencies": {
+    "enchilada": "0.12.0",
+    "express": "4.11.1",
+    "serve-static": "1.8.1",
+    "jquery": "2.1.3",
+    "underscore": "1.7.0"
+  }
+}
