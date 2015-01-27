@@ -22,5 +22,6 @@ function validateBunches($board, selector) {
 // Validate a bunch ({numbers: [1,2,5]}) is valid
 // - No duplicates
 function isValidBunch(bunch) {
-  return _.uniq(bunch.numbers).length === bunch.numbers.length
+  return _.every(bunch.numbers, function (x) { return x > 0 && x < 10 }) &&
+    _.uniq(bunch.numbers).length === bunch.numbers.length
 }

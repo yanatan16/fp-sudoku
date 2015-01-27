@@ -40,23 +40,30 @@ exports.solve = function ($board) {
 
 // Round 2: Fill in the board with a new game
 function fill($board, difficulty) {
-  var game = sudoku.generate(difficulty || 'easy')
+  // For each box, fill the value
+  util.forEachStateBox($board, generateGame(), function ($box, val) {
+    // SIDE-EFFECTS
+    if (val)
+      $box.text(val).attr('data-val', val).addClass('unchangeable')
+    else
+      $box.attr('data-val', '').attr('contenteditable', '')
+  })
+}
+
+// Generate a game and return as 9x9 2d array
+function generateGame(difficulty) {
   // Each game comes as an object like so:
   // { A1: 5, B4: 6 }
   // Empty squares are not included
+  var game = sudoku.generate(difficulty || 'easy')
 
-  _.each('ABCDEFGHI'.split(''), function (letter, i) {
-    _.each(_.range(1, 10), function (number, j) {
-      var val = game[letter + number]
-        , $box = $board.find('[data-row='+i+'][data-col='+j+']')
-
-      if (val)
-        $box.text(val).attr('data-val', val).addClass('unchangeable')
-      else
-        $box.attr('data-val', '').attr('contenteditable', '')
+  return _.map('ABCDEFGHI'.split(''), function (letter) {
+    return _.map(_.range(1, 10), function (number) {
+      return game[letter + number]
     })
   })
 }
+
 
 // Round 3: Check the board for errors and finishing
 function checkBoard($board) {
